@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>myBar</title>
+    <style>
+        .axis line {
+            fill: none;
+            stroke: #E4E6EB;
+            shape-rendering: crispEdges;
+        }
+
+        .axis path {
+            fill: none;
+            stroke: #E4E6EB;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 5px;
+            min-width: 200;
+            height: auto;
+            font-family: simsun;
+            font-size: 14px;
+            color: black;
+            background-color: rgb(255, 255, 255);
+            border-width: 2px solid rgb(255, 255, 255);
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ddd;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="someclass">
+        <h2>u位图</h2>
+        <div id="myBar">
+
+        </div>
+
+    </div>
+
+    <script type="module">
+        import groupBar from '../index.js'
+        let initObj = {
+            container:'#myBar',
+            width: 500,
+            height :500,
+            barWidth : 40,
+            barHeight : 40,
+            barOffset : 20,
+            gapHeight : 50,
+            gapXY : 5,
+            uType : 42,
+            axisMargin : 30,
+            marginT :60,
+            marginL : 35,
+            dynamicColor : "blue"
+        }
+        let bar = new groupBar(initObj)
+        bar.init()
+
+    </script>
+</body>
+
+</html>
