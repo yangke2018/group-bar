@@ -1,22 +1,26 @@
 {
   "name": "group-bar",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "d3.js group-bar",
+  "module": "index.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c ./rollup.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yangke2018/group-bar.git"
   },
   "author": "yangkehappy800@sina.com",
+  "type": "module",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yangke2018/group-bar/issues"
   },
   "homepage": "https://github.com/yangke2018/group-bar#readme",
   "dependencies": {
-    "d3": "^7.2.0"
+    "d3": "^7.2.0",
+    "rollup": "^2.60.2"
   }
 }
