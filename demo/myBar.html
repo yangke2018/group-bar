@@ -48,26 +48,44 @@
         </div>
 
     </div>
+    <!-- <script src="https://d3js.org/d3.v5.js"></script> -->
 
-    <script type="module">
-        import groupBar from '../bundle.js'
+    <script type="module" >
+        import groupBar from "../index.js"
         let initObj = {
-            container:'#myBar',
+            container: '#myBar',
             width: 500,
-            height :500,
-            barWidth : 40,
-            barHeight : 40,
-            barOffset : 20,
-            gapHeight : 50,
-            gapXY : 5,
-            uType : 42,
-            axisMargin : 30,
-            marginT :60,
-            marginL : 35,
-            dynamicColor : "blue"
+            height: 500,
+            barWidth: 40,
+            barHeight: 40,
+            barOffset: 20,
+            gapHeight: 50,
+            gapXY: 5,
+            uType: 42,
+            axisMargin: 30,
+            marginT: 60,
+            marginL: 35,
+            dynamicColor: "blue"
         }
         let bar = new groupBar(initObj)
         bar.init()
+        bar.creatAxios()
+
+        let assetsData = [[{
+            name: '资产1',
+            beginU: 42,
+            occupyULength: 1,
+            type: 0,
+        }],
+        [{
+            name: '资产222',
+            beginU: 32,
+            occupyULength: 1,
+            type: 0,
+        }]]
+
+        bar.creatTooltip()
+        bar.render(assetsData)
 
     </script>
 </body>
