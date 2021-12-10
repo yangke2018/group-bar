@@ -52,6 +52,9 @@
 
     <script type="module" >
         import groupBar from "../index.js"
+        const testFun = (data)=>{
+            console.log('data',data)
+        }
         let initObj = {
             container: '#myBar',
             width: 500,
@@ -65,7 +68,8 @@
             axisMargin: 30,
             marginT: 60,
             marginL: 35,
-            dynamicColor: "blue"
+            dynamicColor: "blue",
+            barClickCallback:testFun
         }
         let bar = new groupBar(initObj)
         bar.init()
@@ -85,6 +89,7 @@
         }]]
 
         bar.creatTooltip()
+
         bar.render(assetsData)
 
     </script>

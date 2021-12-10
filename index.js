@@ -1,5 +1,5 @@
-// import * as d3 from "https://cdn.skypack.dev/d3@7";
-import * as d3 from "d3";
+import * as d3 from "https://cdn.skypack.dev/d3@7";
+// import * as d3 from "d3";
 class groupBar {
     constructor(props) {
         const {
@@ -11,7 +11,8 @@ class groupBar {
             marginT,
             barHeight,
             gapXY,
-            barOffset
+            barOffset,
+            barClickCallback
         } = props
         this.gapHeight = gapHeight
         this.uType = uType
@@ -27,6 +28,7 @@ class groupBar {
         this.barOffset = barOffset
         this.dynamicColor = "blue"
         this.tooltip
+        this.barClickCallback = barClickCallback
     }
     init() {
         this.svg = d3.select(this.container)
@@ -59,6 +61,10 @@ class groupBar {
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0.0);
+    }
+
+    creatTooltipDom(data) {
+
     }
 
     creatRect(barData) {
@@ -102,15 +108,22 @@ class groupBar {
                 let barHeightNum = data.occupyULength
                 return this.yScale(data.beginU) - this.barHeight * barHeightNum - (this.gapHeight - this.barHeight) * (barHeightNum - 1) - this.gapXY;
             })
-            .on('mouseover', function (data) {
+            .on('mouseover', function (event, data) {
                 that.dynamicColor = this.style.fill;
                 let newColor = that.dynamicColor.replace(/0.*/, '0.8')
+                let tooltipDom = `<div>
+                <h3>${data.name}</h3>
+                <ul>
+                <li>2</li>
+                <li>3</li>
+                </ul>
+                </div>`
                 d3.select(this)
                     .style('fill', newColor)
                 that.tooltip
-                    .html(data.name)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY) + "px")
+                    .html(tooltipDom)
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY) + "px")
                     .style("opacity", 1.0)
             })
             .on('mouseout', function (data) {
@@ -118,11 +131,12 @@ class groupBar {
                     .style('fill', that.dynamicColor)
                 that.tooltip.style("opacity", 0.0);
             })
-            .on('click', function (data) {
+            .on('click', function (event,data) {
                 that.dynamicColor = this.style.fill;
                 let newColor = that.dynamicColor.replace(/0.*/, '1')
                 d3.select(this)
                     .style('fill', newColor)
+                that.barClickCallback(data)  
             })
     }
 
