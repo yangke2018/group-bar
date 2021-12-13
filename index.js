@@ -1,5 +1,5 @@
-import * as d3 from "https://cdn.skypack.dev/d3@7";
-// import * as d3 from "d3";
+// import * as d3 from "https://cdn.skypack.dev/d3@7";
+import * as d3 from "d3";
 class groupBar {
     constructor(props) {
         const {
