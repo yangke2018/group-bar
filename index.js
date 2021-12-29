@@ -12,7 +12,9 @@ class groupBar {
             barHeight,
             gapXY,
             barOffset,
-            barClickCallback
+            barClickCallback,
+            bgColor,
+            createDom
         } = props
         this.gapHeight = gapHeight
         this.uType = uType
@@ -28,12 +30,14 @@ class groupBar {
         this.barOffset = barOffset
         this.dynamicColor = "blue"
         this.tooltip
-        this.barClickCallback = barClickCallback
+        this.barClickCallback = barClickCallback,
+        this.bgColor = bgColor,
+        this.createDom =createDom
     }
     init() {
         this.svg = d3.select(this.container)
             .append('svg')
-            .style('background', '#eeeeee')
+            .style('background', this.bgColor||"eeeeee")
             .attr('width', this.width + 'px')
             .attr('height', this.gapHeight * (this.uType + 1) + 'px')
             .style("border", '1px solid #eee')
@@ -111,13 +115,14 @@ class groupBar {
             .on('mouseover', function (event, data) {
                 that.dynamicColor = this.style.fill;
                 let newColor = that.dynamicColor.replace(/0.*/, '0.8')
-                let tooltipDom = `<div>
+                /* let tooltipDom = `<div>
                 <h3>${data.name}</h3>
                 <ul>
                 <li>2</li>
                 <li>3</li>
                 </ul>
-                </div>`
+                </div>` */
+                let tooltipDom = that.createDom(data)
                 d3.select(this)
                     .style('fill', newColor)
                 that.tooltip

@@ -1,6 +1,6 @@
 {
   "name": "group-bar",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "d3.js group-bar",
   "module": "index.js",
   "main": "index.js",

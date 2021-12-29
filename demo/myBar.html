@@ -50,10 +50,20 @@
     </div>
     <!-- <script src="https://d3js.org/d3.v5.js"></script> -->
 
-    <script type="module" >
+    <script type="module">
         import groupBar from "../index.js"
-        const testFun = (data)=>{
-            console.log('data',data)
+        const testFun = (data) => {
+            console.log('data', data)
+        }
+        const testDom = (data) => {
+            return `<div>
+                <h3>${data.name}</h3>
+                <ul>
+                    <li><span>设备名称<span>xxx</li>
+                    <li><span>资产编号<span>xxx</li>
+                    <li><span>资产序列号<span>xxx</li>
+                </ul>
+                </div>`
         }
         let initObj = {
             container: '#myBar',
@@ -69,7 +79,9 @@
             marginT: 60,
             marginL: 35,
             dynamicColor: "blue",
-            barClickCallback:testFun
+            bgColor:"#ffffff",
+            barClickCallback: testFun,
+            createDom: testDom
         }
         let bar = new groupBar(initObj)
         bar.init()
