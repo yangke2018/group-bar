@@ -31,13 +31,13 @@ class groupBar {
         this.dynamicColor = "blue"
         this.tooltip
         this.barClickCallback = barClickCallback,
-        this.bgColor = bgColor,
-        this.createDom =createDom
+            this.bgColor = bgColor,
+            this.createDom = createDom
     }
     init() {
         this.svg = d3.select(this.container)
             .append('svg')
-            .style('background', this.bgColor||"eeeeee")
+            .style('background', this.bgColor || "eeeeee")
             .attr('width', this.width + 'px')
             .attr('height', this.gapHeight * (this.uType + 1) + 'px')
             .style("border", '1px solid #eee')
@@ -64,7 +64,6 @@ class groupBar {
         this.tooltip = d3.select("body")
             .append("div")
             .attr("class", "tooltip")
-            .style("opacity", 0.0);
     }
 
     creatTooltipDom(data) {
@@ -115,33 +114,27 @@ class groupBar {
             .on('mouseover', function (event, data) {
                 that.dynamicColor = this.style.fill;
                 let newColor = that.dynamicColor.replace(/0.*/, '0.8')
-                /* let tooltipDom = `<div>
-                <h3>${data.name}</h3>
-                <ul>
-                <li>2</li>
-                <li>3</li>
-                </ul>
-                </div>` */
                 let tooltipDom = that.createDom(data)
                 d3.select(this)
                     .style('fill', newColor)
                 that.tooltip
                     .html(tooltipDom)
+                    .style("display", "block")
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px")
-                    .style("opacity", 1.0)
+
             })
             .on('mouseout', function (data) {
                 d3.select(this)
                     .style('fill', that.dynamicColor)
-                that.tooltip.style("opacity", 0.0);
+                that.tooltip.style("display", "none");
             })
-            .on('click', function (event,data) {
+            .on('click', function (event, data) {
                 that.dynamicColor = this.style.fill;
                 let newColor = that.dynamicColor.replace(/0.*/, '1')
                 d3.select(this)
                     .style('fill', newColor)
-                that.barClickCallback(data)  
+                that.barClickCallback(data)
             })
     }
 
